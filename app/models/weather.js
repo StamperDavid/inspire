@@ -6,17 +6,17 @@ export default class Weather {
     // Have you ever wanted to know the temperature measured in kelvin? That is what this data returns!
     // data.main.temp is the temperature in Kelvin
     // You should probably convert the temperature data to either F or C
-    this.city = data.name
-    this.kelvin = data.main.temp
+    this.name = data.name
+    this.temp = data.temp || data.main.temp
   }
 
   get Template() {
     return `
     <div class="col">
       <div class="card">
-        <img class="weather-display">${this.kelvin}</img>
+        <div class="weather-display">${this.temp}</div>
         <h5 class="card body">
-          <div clsss="card-title">${this.city}</div>
+          <div clsss="card-title">${this.name}</div>
         </h5>
       </div>
     </div>

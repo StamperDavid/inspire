@@ -13,7 +13,7 @@ let _subscribers = {
     error: []
 }
 
-function _setState(prop, data) {
+function _setState(prop, data) {               ///
     _state[prop] = data
     _subscribers[prop].forEach(fn => fn())
 }
@@ -31,45 +31,45 @@ export default class TodoService {
         console.log("Getting the Todo List")
         todoApi.get()
             .then(res => {
-                let data = response.data.data.map(d => todo(d))
-                    //////////////////////////////////////////////////////// WHAT DO YOU DO WITH THE RESPONSE?
+                let data = res.data.data.map(d => todo(d))
+                //////////////////////////////////////////////////////// WHAT DO YOU DO WITH THE RESPONSE?
             })
             .catch(err => _setState('error', err.response.data))
     }
 
     addTodo(todo) {
-            todoApi.post('', todo)
-                .then(res => {
-                    this.getAllTodos
-                        //////////////////////////////////////////////////////// WHAT DO YOU DO AFTER CREATING A NEW TODO?
-                })
-                .catch(err => _setState('error', err.response.data))
-        }
-        ///////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////
-        ///////////////////////////////////////////////////////////////////////////////////////////////
+        todoApi.post('', todo)
+            .then(res => {
+                this.getTodos
+                //////////////////////////////////////////////////////// WHAT DO YOU DO AFTER CREATING A NEW TODO?
+            })
+            .catch(err => _setState('error', err.response.data))
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////
 
     toggleTodoStatus(todoId) {
-            let todo = _state.todos.find(todo => todo._id == todoId)
-                // Be sure to change the completed property to its opposite
-                // todo.completed = !todo.completed <-- THIS FLIPS A BOOL
+        let todo = _state.todos.find(todo => todo._id == todoId)
+        // Be sure to change the completed property to its opposite
+        // todo.completed = !todo.completed <-- THIS FLIPS A BOOL
 
-            todoApi.put(todoId, todo)
-                .then(res => {
-                    //DO YOU WANT TO DO ANYTHING WITH THIS?
-                })
-                .catch(err => _setState('error', err.response.data))
-        }
-        ////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////
-        //////////////////////////////////////////////////////////////////////////////////////////////
+        todoApi.put(todoId, todo)
+            .then(res => {
+                //DO YOU WANT TO DO ANYTHING WITH THIS?
+            })
+            .catch(err => _setState('error', err.response.data))
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////
     removeTodo(todoId) {
         _todoApi.delete(id)
             .then(res => {
-                this.getAllTodos
+                this.getTodos
             })
-            // This one is on you to write.... 
-            // The http method is delete at the todoId
+        // This one is on you to write.... 
+        // The http method is delete at the todoId
     }
 
 }

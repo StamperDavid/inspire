@@ -1,5 +1,5 @@
 // @ts-ignore
-import image from "../../model/image.js"
+import image from "../../models/image.js"
 
 
 const imgApi = axios.create({

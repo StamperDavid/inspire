@@ -1,6 +1,6 @@
 import WeatherService from "./weather-service.js";
 
-var _weatherService = new Weather - Service()
+var _weatherService = new WeatherService()
 
 function drawWeather() {
 
@@ -14,8 +14,8 @@ function drawWeather() {
 export default class WeatherController {
 
     constructor() {
-        _weather - Service.addSubscriber('weather', drawWeather)
-        _weather - Service.getWeather()
+        _weatherService.addSubscriber('weather', drawWeather)
+        _weatherService.fetchWeather()
     }
 
 }

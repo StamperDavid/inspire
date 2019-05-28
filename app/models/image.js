@@ -3,9 +3,6 @@ export default class image {
     this.image = data.imgUrl
   }
 
-  get Template() {
-    return `
-      <img class="container" src="${this.image}" alt="card image cap"
-`
-  }
+
+}
 }

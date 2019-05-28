@@ -1,14 +1,16 @@
+
+import Quote from "../../models/quote.js";
 const quoteApi = axios.create({
-	baseURL: 'https://bcw-sandbox.herokuapp.com/api/jake/quote/',
+	baseURL: 'https://bcw-sandbox.herokuapp.com/api/quotes',
 	timeout: 3000
 });
 
 let _state = {
-	todos: [],
+	quote: [],
 	error: {},
 }
 let _subscribers = {
-	todos: [],
+	quote: [],
 	error: []
 }
 
@@ -19,7 +21,7 @@ function _setState(prop, data) {
 
 export default class QuoteService {
 	get Quote() {
-		return _state.quote
+		return new Quote(_state.quote)
 	}
 
 	addSubscriber(prop, fn) {
@@ -27,10 +29,10 @@ export default class QuoteService {
 	}
 
 	getQuote() {
-		console.log("Getting the Todo List")
+		console.log("Getting the Daily Quote")
 		quoteApi.get()
 			.then(res => {
-				///////////////////////////////////////////////////////////////////////////////////////////////////////
+				_setState('quote', new Quote(res.data))
 			})
 			.catch(err => _setState('error', err.response.data))
 	}
