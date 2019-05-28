@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 export default class Quote {
   constructor(data) {
     console.log('[QUOTE AND AUTHON]', data);
@@ -22,4 +23,21 @@ export default class Quote {
     </div>
   `
   }
+=======
+export default class quote {
+    constructor(data) {
+        this.quote = data.quote
+        this.author = data.quote.author
+    }
+
+    get Template() {
+        retrurn `
+    <div class="col-3">
+    <div class="card" style="width: 18rem;">
+    <div class"card-body">
+    
+    
+    `
+    }
+>>>>>>> 0069c2c7683835eb28976acf72f4098388051f11
 }

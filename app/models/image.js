@@ -1,11 +1,11 @@
-export default class Image {
+export default class image {
   constructor(data) {
-    this._id = data._id
-    this._img = data._img
+    this.image = data.imgUrl
   }
+
   get Template() {
-    <div class="container">
-      <img class="background-image" src="${https:////bcw-sandbox.herokuapp.com/api/images}" alt="image cap"></img>
-    </div>
+    return `
+      <img class="container" src="${this.image}" alt="card image cap"
+`
   }
 }
