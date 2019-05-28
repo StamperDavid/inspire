@@ -8,6 +8,8 @@ export default class quote {
         retrurn `
     <div class="col-3">
     <div class="card" style="width: 18rem;">
+    <div class"card-body">
+    
     
     `
     }
