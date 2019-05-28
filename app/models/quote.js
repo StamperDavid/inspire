@@ -14,7 +14,7 @@ export default class Quote {
     return `
     <div class="col">
       <div class="card">
-        <img class="weather-display">${this.quote}</img>
+        <img class="quote-display">${this.quote}</img>
         <h5 class="card body">
           <div clsss="card-title">${this.author}</div>
         </h5>
