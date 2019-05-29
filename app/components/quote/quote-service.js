@@ -34,7 +34,7 @@ export default class QuoteService {
 			.then(res => {
 				_setState('quote', new Quote(res.data))
 			})
-			.catch(err => _setState('error', err.response.data))
+		//.catch(err => _setState('error', err.response.data))
 	}
 
-}
+} debugger

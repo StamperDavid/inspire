@@ -1,4 +1,7 @@
+import Todo from "../../models/todo.js";
+
 // @ts-ignore
+
 const todoApi = axios.create({
     baseURL: 'https://bcw-sandbox.herokuapp.com/api/jake/todos/',
     timeout: 3000
@@ -13,7 +16,7 @@ let _subscribers = {
     error: []
 }
 
-function _setState(prop, data) {               ///
+function _setState(prop, data) {
     _state[prop] = data
     _subscribers[prop].forEach(fn => fn())
 }
@@ -31,10 +34,10 @@ export default class TodoService {
         console.log("Getting the Todo List")
         todoApi.get()
             .then(res => {
-                let data = res.data.data.map(d => todo(d))
-                //////////////////////////////////////////////////////// WHAT DO YOU DO WITH THE RESPONSE?
+                let data = res.data.data.map(t => new Todo(t))
+                _setState('todos', data)
+                //catch (err) {next(err)}
             })
-            .catch(err => _setState('error', err.response.data))
     }
 
     addTodo(todo) {
@@ -43,11 +46,9 @@ export default class TodoService {
                 this.getTodos
                 //////////////////////////////////////////////////////// WHAT DO YOU DO AFTER CREATING A NEW TODO?
             })
-            .catch(err => _setState('error', err.response.data))
+            .catch(err => _setState('error', err.res.data))
     }
-    ///////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////////
+
 
     toggleTodoStatus(todoId) {
         let todo = _state.todos.find(todo => todo._id == todoId)
@@ -60,9 +61,7 @@ export default class TodoService {
             })
             .catch(err => _setState('error', err.response.data))
     }
-    ////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////////////////////////
+
     removeTodo(todoId) {
         _todoApi.delete(id)
             .then(res => {

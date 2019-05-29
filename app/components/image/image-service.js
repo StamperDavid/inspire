@@ -36,8 +36,9 @@ export default class ImageService {
 		imgApi.get().then(res => {
 			_setState('image', new Image(res.data))
 		})
-
 	}
 }
+
+
 
 
