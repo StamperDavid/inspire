@@ -1,15 +1,14 @@
+import Image from "../../models/image.js";
+
 // @ts-ignore
-import image from "../../models/image.js"
-
-
-const imgApi = axios.create({
-	baseURL: '//bcw-sandbox.herokuapp.com/api/images',
+const _imageApi = axios.create({
+	baseURL: "//bcw-sandbox.herokuapp.com/api/images",
 	timeout: 3000
 });
 
-
 let _state = {
 	image: {}
+
 }
 
 let _subscribers = {
@@ -21,24 +20,28 @@ function _setState(prop, data) {
 	_subscribers[prop].forEach(fn => fn());
 }
 
-
 export default class ImageService {
-	get Image() {
-		return _state.image
-	}
-
 	addSubscriber(prop, fn) {
 		_subscribers[prop].push(fn)
 	}
 
-	getImage() {
-		console.log('Calling the photographer')
-		imgApi.get().then(res => {
-			_setState('image', new Image(res.data))
-		})
+	get image() {
+		return _state.image
 	}
+
+	getImage() {
+		_imageApi.get()
+			.then(res => {
+				// if (res.data.large_url == null) {
+				// 	console.log("re-getting image")
+				// 	return this.image() 
+				// }
+				let data = new Image(res.data)
+				_setState('image', data)
+			})
+			.catch(err => {
+				console.error(err)
+			})
+	}
+
 }
-
-
-
-

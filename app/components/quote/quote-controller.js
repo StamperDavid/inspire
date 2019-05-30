@@ -1,23 +1,23 @@
 import QuoteService from "./quote-service.js";
 
-var _quoteService = new QuoteService()
+//Private
+let _qs = new QuoteService()
 
 function drawQuote() {
-
-  let quote = _quoteService.Quote
-  // let template = quote.Template
-  //template = quote.Template
-  document.getElementById("quote").innerHTML = quote.Template
-  console.log("THE AUTHOR SAYS", _quoteService.Quote)
+  console.log("THE QUOTE MAN SAYS:", _qs.Quote)
+  //debugger
+  let quote = _qs.Quote
+  let template = quote.Template
+  document.getElementById('quote').innerHTML = template
 }
 
+//Public
 export default class QuoteController {
 
   constructor() {
-    _quoteService.addSubscriber('quote', drawQuote)
-    _quoteService.getQuote()
+    _qs.addSubscriber('quote', drawQuote)
+    _qs.getQuote()
   }
-
 }
 
 

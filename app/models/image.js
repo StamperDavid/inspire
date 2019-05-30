@@ -1,5 +1,7 @@
-export default class image {
+export default class Image {
   constructor(data) {
-    this.image = data.imgUrl
+    this.large_url = data.large_url || data.url
+
   }
+
 }
