@@ -6,3 +6,7 @@
 .quotecard{
   align-content: center;
 }
+
+.done{
+  text-decoration: line-through;
+}

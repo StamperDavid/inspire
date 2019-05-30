@@ -36,6 +36,7 @@ export default class TodoService {
         console.log("Getting My Todo's List")
         todoApi.get()
             .then(res => {
+                console.log(res)
                 let data = res.data.data.map(t => new Todo(t))
                 _setState('todos', data)
             })
@@ -51,7 +52,7 @@ export default class TodoService {
     }
 
     toggleTodoStatus(todoId) {
-        let todo = _state.todos.find(todo => todo._id == todoId)
+        let todo = _state.todos.find(todo => todo.id == todoId)
         todo.completed = !todo.completed
         todoApi.put(todoId, todo)
             .then(res => {
