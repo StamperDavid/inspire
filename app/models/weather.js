@@ -13,10 +13,10 @@ export default class Weather {
   get Template() {
     return `
     <div class="col">
-      <div class="card">
+     
         <div class="weather-display">${this.temp}</div>
-        <h5 class="card body">
-          <div clsss="card-title">${this.name}</div>
+       
+          <div>${this.name}</div>
         </h5>
       </div>
     </div>
