@@ -6,7 +6,7 @@ function _drawTodos() {
 	let todo = _todoService.Todo
 	let template = ''
 	todo.forEach(todo => {
-		template += todo.TodoTemplate
+		template += todo.Template
 	})
 	document.getElementById('todo').innerHTML = template
 }
