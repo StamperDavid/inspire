@@ -12,6 +12,7 @@ function _drawTodos() {
 }
 
 
+
 export default class TodoController {
 	constructor() {
 		_todoService.addSubscriber("todos", _drawTodos)
@@ -24,8 +25,6 @@ export default class TodoController {
 		var todo = {
 			description: form.description.value,
 		}
-
-
 		_todoService.addTodo(todo)
 	}
 

@@ -1,15 +1,17 @@
 import Todo from "../../models/todo.js";
 //Private
 const todoApi = axios.create({
-    baseURL: 'https://bcw-sandbox.herokuapp.com/api/David/todos/',
-    timeout: 3000
+    baseURL: 'https://bcw-sandbox.herokuapp.com/api/David/todos'
 });
 
 let _state = {
     todos: [],
+    errors: {}
 }
+
 let _subscribers = {
     todos: [],
+    errors: []
 }
 
 function _setState(prop, data) {
@@ -23,7 +25,7 @@ export default class TodoService {
     }
 
     get Todo() {
-        return _state.todos.map(t => new Todo(t))
+        return _state.todos
     }
 
     addSubscriber(prop, fn) {
@@ -34,12 +36,9 @@ export default class TodoService {
         console.log("Getting My Todo's List")
         todoApi.get()
             .then(res => {
-
-                // Set state?
                 let data = res.data.data.map(t => new Todo(t))
                 _setState('todos', data)
             })
-
     }
 
     addTodo(todo) {
@@ -51,29 +50,24 @@ export default class TodoService {
         //.catch(err => _setState('error', err.response.data))
     }
 
-
-
-
-
-
-
     toggleTodoStatus(todoId) {
         let todo = _state.todos.find(todo => todo._id == todoId)
-
-
+        todo.completed = !todo.completed
         todoApi.put(todoId, todo)
             .then(res => {
-
+                this.getTodos()
             })
-            .catch(err => _setState('error', err.response.data))
+        // .catch(err => _setState('error', err.response.data))
     }
 
     removeTodo(todoId) {
-
+        console.log(todoId)
         todoApi.delete(todoId)
             .then(res => {
-                this.getTodos
+                this.getTodos()
             })
+
+
     }
 
 }

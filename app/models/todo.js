@@ -10,7 +10,7 @@ export default class Todo {
   get Template() {
     return `
             <li>${this.description}</li>
-           <button class="btn btn-danger" onclick ="app.controllers.todoController.removeTodo('${this._id}')">Delete</button>
+           <button class="btn btn-danger" onclick="app.controllers.todoController.removeTodo('${this.id}')">Delete</button>
         `
   }
 }
