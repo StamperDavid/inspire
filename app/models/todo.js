@@ -20,8 +20,7 @@ export default class Todo {
       return `
             <li>${this.description}</li>
            <button class="btn btn-danger" onclick="app.controllers.todoController.removeTodo('${this.id}')">Delete</button>
-           <button class="btn btn-primary" onclick="app.controllers.todoController.toggleTodoStatus('${this.id}')">completed</button>
-           
+           <button class="btn btn-primary" onclick="app.controllers.todoController.toggleTodoStatus('${this.id}')">completed</button>       
         `
     }
   }
